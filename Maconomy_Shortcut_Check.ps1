@@ -15,9 +15,12 @@
 #
 # HISTORY
 #
-#   Version: 1.0 - 27/01/2023
+#   Version: 1.1 - 02/02/2023
 #
 #   - 27/01/2023 - V1.0 - Created by Headbolt
+#
+#   - 02/02/2023 - V1.1 - Updated by Headbolt
+#				Legislating for Maconomy not being installed
 #
 ###############################################################################################################
 #
@@ -86,6 +89,17 @@ PathTest # Testing the if the Path exists
 If ($PathTestResult -eq "0")
 	{
 		$ExitCode++
+	}
+#
+$global:Path="C:\Program Files (x86)\Deltek Maconomy 22.101.1\Maconomy.exe" # Setting the Path variable for this test
+PathTest # Testing the if the Path exists
+If ($PathTestResult -eq "0")
+	{
+		Write-Host 'Maconomy 2.6.1 Not Installed, not triggering Remediation'
+		Write-Host
+		Write-Host '###############################################################################################################'
+		Write-Host
+		$ExitCode=0 # Setting ExitCode Variable back 0 as Maconomy is not Installed
 	}
 #
 Write-Host Exiting with exit code $ExitCode
